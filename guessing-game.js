@@ -1,10 +1,10 @@
 const secretNumber = 5;
 
-let checkGuess = function (number) {
-  if (checkGuess > secretNumber) {
+let checkGuess = function (guess) {
+  if (guess > secretNumber) {
     console.log("Too high");
     return false;
-  } else if (checkGuess < secretNumber) {
+  } else if (guess < secretNumber) {
     console.log("Too low");
     return false;
   } else {
