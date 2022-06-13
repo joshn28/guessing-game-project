@@ -1,4 +1,3 @@
-const secretNumber = 5;
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -30,5 +29,13 @@ let askGuess = function () {
     }
   });
 };
+
+let randomInRange = function (min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const secretNumber = randomInRange(0, 100);
 
 askGuess();
