@@ -1,4 +1,10 @@
 const secretNumber = 5;
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 let checkGuess = function (guess) {
   if (guess > secretNumber) {
@@ -12,3 +18,17 @@ let checkGuess = function (guess) {
     return true;
   }
 };
+
+let askGuess = function () {
+  rl.question("Enter a guess: ", (answer) => {
+    let check = checkGuess(Number(answer));
+
+    if (check === true) {
+      rl.close();
+    } else {
+      askGuess();
+    }
+  });
+};
+
+askGuess();
