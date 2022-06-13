@@ -6,6 +6,7 @@ const rl = readline.createInterface({
 });
 
 let secretNumber;
+let numAttempts;
 
 let checkGuess = function (guess) {
   if (guess > secretNumber) {
@@ -22,11 +23,16 @@ let checkGuess = function (guess) {
 
 let askGuess = function () {
   rl.question("Enter a guess: ", answer => {
+    numAttempts--;
     let check = checkGuess(Number(answer));
 
     if (check === true) {
       rl.close();
+    } else if (numAttempts <= 0) {
+      console.log("You Lose");
+      rl.close();
     } else {
+      console.log(`You have ${numAttempts} turns remaining\n`);
       askGuess();
     }
   });
@@ -54,4 +60,12 @@ let askRange = function () {
   });
 };
 
-askRange();
+let askLimit = function () {
+  rl.question("Enter a number: ", answer => {
+    numAttempts = Number(answer);
+    console.log(`You have ${answer} turns\n`);
+    askRange();
+  });
+}
+
+askLimit();
